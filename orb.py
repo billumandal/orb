@@ -6,3 +6,12 @@ from nsepython import *
 
 folist = fnolist()[3:]
 
+for scrip in folist:
+    #price_of_scrip = nse_eq(scrip)['priceInfo']['close']
+    price_of_scrip = nse_quote_ltp(scrip) 
+    
+    if price_of_scrip < float(upper_bound):
+        if price_of_scrip > float(lower_bound):
+            resultant_scrips.append(scrip)
+
+print(resultant_scrips)
