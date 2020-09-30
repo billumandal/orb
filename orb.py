@@ -21,17 +21,13 @@ import pandas as pd
 
     #scrip_values.update({scrip : [high_diff_percentage, low_diff_percentage]})
 
-    #if price_of_scrip < float(upper_bound):
-    #    if price_of_scrip > float(lower_bound):
-    #        resultant_scrips.append(scrip)
 
 #df = pd.DataFrame(scrip_values)
 #print(df)
 
     # Do the same with nsefetch.
-    scrip_list = []
-    folist = nsefetch('http://www.nserindia.com/api/equity-stockIndices?index=SECURITIES%20IN%20F%26O')
-    for scrip in folist:
-    	percentage_change = scrip['pChange']
-    	script_list.append(percentage_change)
-
+scrip_list = []
+folist = nsefetch('http://www.nseindia.com/api/equity-stockIndices?index=SECURITIES%20IN%20F%26O')
+fo = json.dumps(f)
+folist = json.loads(fo)
+fodict = folist['data']
