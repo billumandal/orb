@@ -1,5 +1,4 @@
 from nsepython import *
-#from tabulate import tabulate
 import pandas as pd
 
 #At 9:20 it will scan all fno stocks and take the first 10 and last 10.
@@ -19,6 +18,7 @@ df.sort_value(by=['pChange'])
 highest_change = df['symbol'][:3]
 lowest_change = df['symbol'][-3:]
 
+import time 
 import Logging
 from alice_blue import *
 logging.basicConfig(level=logging.DEBUG)
@@ -28,9 +28,9 @@ logging.basicConfig(level=logging.DEBUG)
 username = 'AB072170'
 password = 'somamandal2'
 twoFA = 'q'
-client_id = ''
-client_secret = ''
-redirect_url = ''
+client_id = 'UNOFFICED'
+client_secret = 'AYBTHY25UFEDJ6EZY6ZISK1K0LBEUX18XGKB038P8RJF2660WHAZNWP07025XXL6'
+redirect_url = 'https://www.unofficed.com/alice/fallback/'
 access_token = AliceBlue.login_and_get_access_token(username=username, password=password, twoFA=twoFA,  api_secret=client_secret, redirect_url=redirect_url, app_id=client_id)
 alice = AliceBlue(username=username, password=password, access_token=access_token,master_contracts_to_download=['NSE', 'BSE', 'MCX', 'NFO'])
 #bn_fut= alice.get_instrument_for_fno(symbol=symbol, expiry_date=expiry_date, is_fut=True, strike=None, is_CE=False)
