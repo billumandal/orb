@@ -36,4 +36,7 @@ alice = AliceBlue(username=username, password=password, access_token=access_toke
 #bn_fut= alice.get_instrument_for_fno(symbol=symbol, expiry_date=expiry_date, is_fut=True, strike=None, is_CE=False)
 ###################################################
 
-alice.place_order(transaction_type=TransactionType.Buy, instrument=scrip1,quantity=1, order_type=OrderType.Market, product_type=ProductType.Intraday)
+#alice.place_order(transaction_type=TransactionType.Buy, instrument=scrip1,quantity=1, order_type=OrderType.Market, product_type=ProductType.Intraday)
+
+return highest_change
+return lowest_change
