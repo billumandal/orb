@@ -44,4 +44,4 @@ logging.basicConfig(level=logging.DEBUG)
 alldata = pd.DataFrame(fnolist)
 
 highest_three = alldata[:3]
-print(highest_three[0:1]['symbol']," | ", highest_three[0:1]['open'])
+print(highest_three[0:1]['symbol'].to_string()," | ", highest_three[0:1]['open'].to_string())
