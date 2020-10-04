@@ -14,7 +14,7 @@ fnolist = fodict['data']
 
 df = pd.DataFrame(fnolist).reindex(columns=['symbol','pChange'])
 
-df.sort_value(by=['pChange'])
+df.sort_values(by=['pChange'])
 highest_change = df['symbol'][:3]
 lowest_change = df['symbol'][-3:]
 
@@ -38,5 +38,5 @@ alice = AliceBlue(username=username, password=password, access_token=access_toke
 
 #alice.place_order(transaction_type=TransactionType.Buy, instrument=scrip1,quantity=1, order_type=OrderType.Market, product_type=ProductType.Intraday)
 
-return highest_change
-return lowest_change
+#print(highest_change[1])
+#return lowest_change
