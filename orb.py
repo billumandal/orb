@@ -40,3 +40,8 @@ alice = AliceBlue(username=username, password=password, access_token=access_toke
 
 #print(highest_change[1])
 #return lowest_change
+
+alldata = pd.DataFrame(fnolist)
+
+highest_three = alldata[:3]
+print(highest_three[1]['symbol']," | ", highest_three[1]['open'])
