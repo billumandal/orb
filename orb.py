@@ -25,14 +25,14 @@ logging.basicConfig(level=logging.DEBUG)
 
 ###################################################
 #Alice API 
-username = 'AB072170'
-password = 'somamandal2'
-twoFA = 'q'
-client_id = 'UNOFFICED'
-client_secret = 'AYBTHY25UFEDJ6EZY6ZISK1K0LBEUX18XGKB038P8RJF2660WHAZNWP07025XXL6'
-redirect_url = 'https://www.unofficed.com/alice/fallback/'
-access_token = AliceBlue.login_and_get_access_token(username=username, password=password, twoFA=twoFA,  api_secret=client_secret, redirect_url=redirect_url, app_id=client_id)
-alice = AliceBlue(username=username, password=password, access_token=access_token,master_contracts_to_download=['NSE', 'BSE', 'MCX', 'NFO'])
+#username = 'AB072170'
+#password = 'somamandal2'
+#twoFA = 'q'
+#client_id = 'UNOFFICED'
+#client_secret = 'AYBTHY25UFEDJ6EZY6ZISK1K0LBEUX18XGKB038P8RJF2660WHAZNWP07025XXL6'
+#redirect_url = 'https://www.unofficed.com/alice/fallback/'
+#access_token = AliceBlue.login_and_get_access_token(username=username, password=password, twoFA=twoFA,  api_secret=client_secret, redirect_url=redirect_url, app_id=client_id)
+#alice = AliceBlue(username=username, password=password, access_token=access_token,master_contracts_to_download=['NSE', 'BSE', 'MCX', 'NFO'])
 #bn_fut= alice.get_instrument_for_fno(symbol=symbol, expiry_date=expiry_date, is_fut=True, strike=None, is_CE=False)
 ###################################################
 
