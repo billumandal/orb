@@ -19,7 +19,7 @@ highest_change = df['symbol'][:3]
 lowest_change = df['symbol'][-3:]
 
 import time 
-import Logging
+import logging
 from alice_blue import *
 logging.basicConfig(level=logging.DEBUG)
 
@@ -44,4 +44,4 @@ alice = AliceBlue(username=username, password=password, access_token=access_toke
 alldata = pd.DataFrame(fnolist)
 
 highest_three = alldata[:3]
-print(highest_three[1]['symbol']," | ", highest_three[1]['open'])
+print(highest_three[0:1]['symbol']," | ", highest_three[0:1]['open'])
