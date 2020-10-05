@@ -38,10 +38,20 @@ logging.basicConfig(level=logging.DEBUG)
 
 #alice.place_order(transaction_type=TransactionType.Buy, instrument=scrip1,quantity=1, order_type=OrderType.Market, product_type=ProductType.Intraday)
 
-#print(highest_change[1])
-#return lowest_change
-
 alldata = pd.DataFrame(fnolist)
 
-highest_three = alldata[:3]
-print(highest_three[0:1]['symbol'].to_string()," | ", highest_three[0:1]['open'].to_string())
+#highest_three = alldata[:3]
+#print(highest_three[0:1]['symbol'].to_string()," | ", highest_three[0:1]['open'].to_string())
+
+scrip1 = highest_three[0:1]['symbol']
+buy_above = highest_three[0:1]['dayHigh']
+days_low = highest_three[0:1]['dayLow']
+
+while True:
+	ltp = highest_three[0:1]['lastPrice']
+	who_triggered = "NONE"
+	if(ltp>buy_above):
+		who_triggered = "BUY"
+		alice.place_order(transaction_type=TransactionType.Buy, instrument=scrip1,quantity=1, order_type=OrderType.Market, product_type=ProductType.Intraday)
+
+	time.sleep(100)
