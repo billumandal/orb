@@ -18,6 +18,13 @@ def get_gainers():
     gainers.drop(gainers.columns.difference(["symbol","high_price","low_price","ltp"]), 1, inplace=True)
     return gainers
 
+def get_losers():
+    losers = nsefetch("https://www.nseindia.com/api/live-analysis-variations?index=losers")
+    losers=pd.DataFrame.from_records(losers["NIFTY"]["data"])
+    losers=losers.head(5)
+    losers.drop(losers.columns.difference(["symbol","high_price","low_price","ltp"]), 1, inplace=True)
+    return losers
+
 #Functions for getting data from Alice Blue
 def open_callback():
     global socket_opened
@@ -48,6 +55,7 @@ def main():
 	                        run_in_background=True)
     AliceBlueLogin()
 	gainers = get_gainers()
+	losers = get_losers()
 
 	if(now.hour == 9 and now.minute==25 and now.second>=0 and now.second < 10):
 		for i in range(0,5):
@@ -59,8 +67,7 @@ def main():
 				    if(current_ltp>day_high):
 				    	who_triggered = "BUY"
 						alice.place_order(transaction_type=TransactionType.Buy, instrument=symbol,quantity=quantity, order_type=OrderType.Market, product_type=ProductType.Intraday)
-
-		time.sleep(100)
+			time.sleep(100)
 
 
 
