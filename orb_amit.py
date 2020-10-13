@@ -46,40 +46,42 @@ def AliceBlueLogin():
     access_token = AliceBlue.login_and_get_access_token(username=username, password=password, twoFA=twoFA,  api_secret=client_secret, redirect_url=redirect_url, app_id=client_id)
 
     alice = AliceBlue(username=username, password=password, access_token=access_token, master_contracts_to_download=['NSE','NFO'])
+    print(alice.get_balance()) # get balance / margin limits
 
 def main():
+	who_triggered=""
 	now = datetime.datetime.now()
+	AliceBlueLogin()
 	alice.start_websocket(subscribe_callback=quote_update,
 	                        socket_open_callback=open_callback,
 	                        socket_error_callback = socket_error,
 	                        run_in_background=True)
-    AliceBlueLogin()
 	gainers = get_gainers()
 	losers = get_losers()
 
 	if(now.hour == 9 and now.minute==25 and now.second>=0 and now.second < 10):
 		for i in range(0,5):
-		    symbol = gainers.symbol.iloc[i]
-		    current_ltp = nse_quote_ltp(symbol)
-		    day_high = gainers.high_price.iloc[i]
-		    day_low = gainers.low_price.iloc[i]
-		    quantity = int(100000/current_ltp)
-				    if(current_ltp>day_high):
-				    	who_triggered = "BUY"
-						alice.place_order(transaction_type=TransactionType.Buy,
-			                            instrument=symbol,
-			                            quantity = quantity,  # 1 lot or should i use 25 here as 1 lot = 25 units?
-			                            order_type=OrderType.Limit,
-			                            product_type=ProductType.Intraday,
-			                            price=current_ltp*1.001,
-			                            trigger_price=day_low,
-			                            stop_loss=None,
-			                            square_off=None,
-			                            trailing_sl=current_ltp*.01,
-			                            is_amo=False)
+			if who_triggered == "NONE":
+			    symbol = gainers.symbol.iloc[i]
+			    current_ltp = nse_quote_ltp(symbol)
+			    day_high = gainers.high_price.iloc[i]
+			    day_low = gainers.low_price.iloc[i]
+			    quantity = int(100000/current_ltp)
+			    if(current_ltp>day_high):
+			    	who_triggered = "BUY"
+					alice.place_order(transaction_type=TransactionType.Buy,
+						instrument=symbol,
+						quantity=quantity,
+						order_type=OrderType.Limit,
+						product_type=ProductType.Intraday,
+						price=current_ltp*1.001,
+						trigger_price=day_low,
+						stop_loss=None,
+						square_off=None,
+						trailing_sl=current_ltp*.01,
+						is_amo=False)
+					
 			time.sleep(100)
-
-
 
 if(__name__ == '__main__'):
 			main()
