@@ -69,18 +69,8 @@ def main():
 			    quantity = int(100000/current_ltp)
 			    if(current_ltp>day_high):
 			    	who_triggered = "BUY"
-					alice.place_order(transaction_type=TransactionType.Buy,
-						instrument=symbol,
-						quantity=quantity,
-						order_type=OrderType.Limit,
-						product_type=ProductType.Intraday,
-						price=current_ltp*1.001,
-						trigger_price=day_low,
-						stop_loss=None,
-						square_off=None,
-						trailing_sl=current_ltp*.01,
-						is_amo=False)
-					
+			    	alice.place_order(transaction_type = TransactionType.Buy,instrument = symbol,quantity = quantity,order_type = OrderType.Limit,product_type = ProductType.Intraday,price = current_ltp*1.001,trigger_price = day_low,stop_loss = None,square_off = None,trailing_sl = current_ltp*.01,is_amo = False)
+   
 			time.sleep(100)
 
 if(__name__ == '__main__'):
